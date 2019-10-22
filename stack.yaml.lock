@@ -11,16 +11,9 @@ packages:
       sha256: e41a76d32d11404240c0f5263e9f6dc9874083a1119db703ee65c28ed76f4505
   original:
     hackage: wcwidth-0.0.2
-- completed:
-    hackage: ansi-terminal-0.9@sha256:24e357bccd882add0d9caee63136d6b7923aaa9e36ed515097230dca82b0065c,3154
-    pantry-tree:
-      size: 1386
-      sha256: ba8e708bbeb1d2d277f40d09627e91cc597b08334b63936c661263c18108d008
-  original:
-    hackage: ansi-terminal-0.9
 snapshots:
 - completed:
-    size: 502681
-    url: https://raw.githubusercontent.com/commercialhaskell/stackage-snapshots/master/nightly/2019/1/30.yaml
-    sha256: b6b49297415bd1daab72217fd455b15ce311057526f4713eae746cf6123fe907
-  original: nightly-2019-01-30
+    size: 524786
+    url: https://raw.githubusercontent.com/commercialhaskell/stackage-snapshots/master/lts/14/11.yaml
+    sha256: 088bb91b545839510a41ae92fa5feb36779ef3529571a42bd12b9f51eb89ded3
+  original: lts-14.11

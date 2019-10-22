@@ -1,4 +1,4 @@
-resolver: nightly-2019-01-30
+resolver: lts-14.11
 packages:
 - core/
 - hunit/
@@ -7,5 +7,4 @@ packages:
 - core-tests/
 extra-deps:
 - wcwidth-0.0.2
-- ansi-terminal-0.9
 flags: {}
