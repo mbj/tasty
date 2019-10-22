@@ -5,6 +5,7 @@
 module Test.Tasty.Core where
 
 import Control.Exception
+import Test.Tasty.ConsoleFormat
 import Test.Tasty.Options
 import Test.Tasty.Patterns
 import Test.Tasty.Patterns.Types
@@ -47,6 +48,8 @@ data Outcome
 -- | Time in seconds. Used to measure how long the tests took to run.
 type Time = Double
 
+type ResultDetailsPrinter = (ConsoleFormat -> IO () -> IO ()) -> IO ()
+
 -- | A test result
 data Result = Result
   { resultOutcome :: Outcome
@@ -65,8 +68,22 @@ data Result = Result
     -- @FAIL@.
   , resultTime :: Time
     -- ^ How long it took to run the test, in seconds.
+  , printResultDetails :: ResultDetailsPrinter
+    -- ^ Optional detailed result printing action.
+    --
+    -- 'printResultDetails' is used by providers that need to have fine grained
+    -- control about the printed results. Especially when it comes to colorization.
   }
-  deriving Show
+
+instance Show Result where
+  showsPrec _prec result
+    = ("Result {" <>)
+    . shows (resultOutcome result) . shows ", "
+    . shows (resultOutcome result) . shows ", "
+    . shows (resultDescription result) . shows ", "
+    . shows (resultShortDescription result) . shows ", "
+    . shows (resultTime result)
+    . shows "}"
 
 {- Note [Skipped tests]
    ~~~~~~~~~~~~~~~~~~~~
@@ -104,6 +121,7 @@ exceptionResult e = Result
   , resultDescription = "Exception: " ++ show e
   , resultShortDescription = "FAIL"
   , resultTime = 0
+  , printResultDetails = const $ return ()
   }
 
 -- | Test progress information.
